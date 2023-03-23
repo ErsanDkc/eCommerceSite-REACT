@@ -19,7 +19,7 @@ function Signup() {
       passwordConfirm: "",
       email: "",
     },
-    onSubmit: (values,action) => {
+    onSubmit: (values,actions) => {
       console.log(values);
     },
     validationSchema: signupSchema
