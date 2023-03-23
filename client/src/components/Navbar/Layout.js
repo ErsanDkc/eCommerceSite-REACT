@@ -2,9 +2,12 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { Button } from "@chakra-ui/react";
 import styles from "./styles.module.css";
+import { useAuth } from "../contexts/AutContext";
 
 
 function Layout() {
+  const {loggedIn} = useAuth()
+
   return (
     <>
       <nav className={styles.nav}>
@@ -19,12 +22,25 @@ function Layout() {
           </ul>
         </div>
         <div className={styles.right}>
-          <NavLink to="/singin">
+          {
+            !loggedIn && 
+            <>
+            <NavLink to="/singin">
             <Button colorScheme="pink">Login</Button>
           </NavLink>
           <NavLink to="/signup">
             <Button colorScheme="pink">Register</Button>
           </NavLink>
+            </>
+          }
+          {
+            loggedIn  &&
+            <>
+            <NavLink to="/profile">
+            <Button >Profile</Button>
+          </NavLink>
+            </>
+          }
         </div>
       </nav>
       

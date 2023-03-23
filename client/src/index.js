@@ -7,21 +7,24 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { AuthProvider } from "./components/contexts/AutContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnMount:false,
-      refetchOnWindowFocus:false
-    }
-  }
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    },
+  },
 });
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <QueryClientProvider client={queryClient}>
       <ChakraProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ChakraProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

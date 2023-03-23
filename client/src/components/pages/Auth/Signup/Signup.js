@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../../Navbar/styles.module.css"
 import signupSchema from "./validation";
+import { signupDataPost } from "../../../../api";
 import {
   Box,
   Button,
@@ -9,26 +10,57 @@ import {
   FormLabel,
   Heading,
   Input,
+  Alert,
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
+import { useAuth } from "../../../contexts/AutContext";
 
 function Signup() {
+  const {login} = useAuth()
+
   const {handleBlur,handleChange,values,handleSubmit,errors,touched} = useFormik({
     initialValues: {
       password: "",
       passwordConfirm: "",
       email: "",
     },
-    onSubmit: (values,actions) => {
-      console.log(values);
+    onSubmit: async(values,actions) => {
+      try {
+        const registerResponse = await signupDataPost({email: values.email, password:values.password})
+        
+        login(registerResponse)
+        setTimeout(() => {
+          actions.resetForm();
+        },2000)
+      }
+      catch(e) {
+        
+        actions.setErrors({ general: e.response.data.message })
+      }
+
+
     },
     validationSchema: signupSchema
   });
+  
   return (
     <div>
+      
       <Flex align="center" justifyContent="center" width="full">
         <Box p="10" textAlign="center" mt="10">
           <Heading>Sign Up</Heading>
+          <Box my="5" >
+            {
+              errors.general && (
+                <Alert status="error">
+                   {
+                      errors.general
+                   } 
+                </Alert>
+              )
+            } 
+
+          </Box>
           <Box mt="10">
             <form onSubmit={handleSubmit}>
               <FormControl>
@@ -39,6 +71,8 @@ function Signup() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.email}
+                  isInvalid={errors.email && touched.email}
+                  
                 ></Input>
                 {errors.email && touched.email ? <div className={styles.error}>{errors.email}</div> : ""}
               </FormControl>
@@ -50,6 +84,7 @@ function Signup() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.password}
+                  isInvalid={errors.password && touched.password}
                 ></Input>
                 {errors.password && touched.password ? <div className={styles.error}>{errors.password}</div> : ""}
               </FormControl>
@@ -61,6 +96,7 @@ function Signup() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.passwordConfirm}
+                  isInvalid={errors.passwordConfirm && touched.passwordConfirm}
                 ></Input>
                 {errors.passwordConfirm && touched.passwordConfirm ? <div className={styles.error}>{errors.passwordConfirm}</div> : ""}
               </FormControl>
