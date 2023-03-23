@@ -3,10 +3,22 @@ import { NavLink, Outlet } from "react-router-dom";
 import { Button } from "@chakra-ui/react";
 import styles from "./styles.module.css";
 import { useAuth } from "../contexts/AutContext";
+import { Logout } from "../../api";
 
-
+import { useNavigate } from "react-router-dom";
 function Layout() {
+  const navigate = useNavigate()
+  const {setLoggedIn,setUser} = useAuth()
   const {loggedIn} = useAuth()
+  const LogoutProfile = () => {
+    setLoggedIn(false)
+    setUser(null)
+    Logout()
+    navigate("/homepage")
+    localStorage.removeItem("access-token")
+    localStorage.removeItem("refresh-token")
+
+  }  
 
   return (
     <>
@@ -39,6 +51,7 @@ function Layout() {
             <NavLink to="/profile">
             <Button >Profile</Button>
           </NavLink>
+          <Button onClick={LogoutProfile} colorScheme="red">Logout</Button>
             </>
           }
         </div>

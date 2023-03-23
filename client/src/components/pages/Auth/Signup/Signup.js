@@ -14,8 +14,10 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { useAuth } from "../../../contexts/AutContext";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate()
   const {login} = useAuth()
 
   const {handleBlur,handleChange,values,handleSubmit,errors,touched} = useFormik({
@@ -29,9 +31,11 @@ function Signup() {
         const registerResponse = await signupDataPost({email: values.email, password:values.password})
         
         login(registerResponse)
+        navigate("/homepage")
         setTimeout(() => {
           actions.resetForm();
-        },2000)
+          navigate("/homepage")
+        },3000)
       }
       catch(e) {
         
