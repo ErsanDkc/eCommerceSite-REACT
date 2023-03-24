@@ -10,10 +10,10 @@ function Layout() {
   const navigate = useNavigate()
   const {setLoggedIn,setUser} = useAuth()
   const {loggedIn} = useAuth()
-  const LogoutProfile = () => {
+  const LogoutProfile = async() => {
     setLoggedIn(false)
     setUser(null)
-    Logout()
+    await Logout()
     navigate("/homepage")
     localStorage.removeItem("access-token")
     localStorage.removeItem("refresh-token")

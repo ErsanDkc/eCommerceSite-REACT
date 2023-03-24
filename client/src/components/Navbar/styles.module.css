@@ -53,3 +53,23 @@
     color: red;
     font-weight: 600;
 }
+
+.successEntry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 48px;
+    gap: 16px;
+
+}
+.successEntry h1 {
+    font-size: 36px;
+}
+.successEntry h2 {
+    font-size: 24px;
+}
+.successEntry h3 {
+    font-style: italic;
+    font-size: 16px;
+}
