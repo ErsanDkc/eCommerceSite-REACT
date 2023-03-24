@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "../Navbar/styles.module.css"
-function SuccessEntry() {
+function SuccessRegister() {
   return (
     <div className={styles.successEntry}>
         <h1>Congrats! You have registered Successfully!</h1>
@@ -11,4 +11,4 @@ function SuccessEntry() {
   )
 }
 
-export default SuccessEntry
+export default SuccessRegister

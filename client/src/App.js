@@ -8,8 +8,10 @@ import ProductDetail from "./components/pages/ProductDetail/ProductDetail";
 import ProductedRoute from "./components/pages/ProductedRoute";
 import Products from "./components/pages/Products/Products";
 import Profile from "./components/pages/Profile/Profile";
+import SuccessLogin from "./components/pages/SuccessLogin";
+import SuccessLogout from "./components/pages/SuccessLogout";
 
-import SuccessEntry from "./components/pages/SuccessEntry";
+import SuccessRegister from "./components/pages/SuccessRegister";
 
 function App() {
   // const navigate = useNavigate()
@@ -29,7 +31,9 @@ function App() {
           <Route element={<ProductedRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
-          <Route path="/successentry" element={<SuccessEntry />} />
+          <Route path="/successentry" element={<SuccessRegister />} />
+          <Route path="/successlogin" element={<SuccessLogin />} />
+          <Route path="/successlogout" element={<SuccessLogout />} />
         </Route>
       </Routes>
     </div>

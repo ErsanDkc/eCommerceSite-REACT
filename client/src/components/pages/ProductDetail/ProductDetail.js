@@ -4,6 +4,7 @@ import { product } from "../../../api";
 import { Box, Text, Button } from "@chakra-ui/react";
 import ImageGallery from "react-image-gallery";
 import moment from "moment";
+import styles from "../../Navbar/styles.module.css"
 
 function ProductDetail() {
   const { product_id } = useParams();
@@ -19,14 +20,19 @@ function ProductDetail() {
   const images = data.photos.map((url) => ({ original: url }));
   
   return (
-    <div>
-      <Button colorScheme="green">Add to Basket</Button>
+    <div className={styles.proDetail}>
+      <div className={styles.proImage}>
+      <Box p="10"><ImageGallery items={images} /></Box>
+      </div>
+      <div className={styles.proDesc}>
       <Text as="h2" fontSize="2xl">
         {data.title}
       </Text>
       <Text>{moment(data.createAt).format("DD/MM/YYYY")}</Text>
       <p>{data.description}</p>
-      <Box p="10"><ImageGallery items={images} /></Box>
+      
+      <Button colorScheme="green">Add to Basket</Button>
+      </div>
     </div>
   );
 }

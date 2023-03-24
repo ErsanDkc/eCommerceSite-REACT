@@ -73,3 +73,30 @@
     font-style: italic;
     font-size: 16px;
 }
+.proDetail {
+    display: flex;
+    gap: 12px;
+}
+.proDetail > *{
+    flex: 1;
+}
+.proImage {
+    flex: 1.5;
+}
+.proDesc {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 26px;
+    margin-right: 16px;
+    padding: 3px;
+    
+
+}
+.proDesc p {
+    line-height: 2;
+    margin-bottom: 20px;
+}
+.proDesc button {
+    width: 60%;
+}

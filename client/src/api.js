@@ -40,6 +40,11 @@ export const signupDataPost = async (input) => {
   return data;
 };
 
+export const signInDataPost = async(input) => {
+  const {data} = await axios.post(`${process.env.REACT_APP_ENDPOINT}/auth/login`, input)
+  return data;
+}
+
 export const fetcMe = async () => {
   const { data } = await axios.get(`${process.env.REACT_APP_ENDPOINT}/auth/me`);
   return data;
