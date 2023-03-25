@@ -9,6 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { AuthProvider } from "./components/contexts/AutContext";
 import { BrowserRouter } from "react-router-dom";
+import { BasketProvider } from "./components/contexts/BasketContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +26,9 @@ root.render(
       <ChakraProvider>
         <BrowserRouter>
           <AuthProvider>
-            <App />
+            <BasketProvider>
+              <App />
+            </BasketProvider>
           </AuthProvider>
         </BrowserRouter>
       </ChakraProvider>

@@ -9,6 +9,7 @@ export const AuthProvider = ({children}) => {
     const [loggedIn,setLoggedIn] = useState(false)
     const [loading,setLoading]  = useState(true)
     useEffect(() => {
+        
         (async() => {
             try{
             const me = await fetcMe()

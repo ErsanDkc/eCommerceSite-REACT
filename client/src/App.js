@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Navbar/Layout";
 import Signin from "./components/pages/Auth/Signin/Signin";
 import Signup from "./components/pages/Auth/Signup/Signup";
+import Basket from "./components/pages/Basket/Basket";
 import Homepage from "./components/pages/HomePage/Homepage";
 import ProductDetail from "./components/pages/ProductDetail/ProductDetail";
 import ProductedRoute from "./components/pages/ProductedRoute";
@@ -34,6 +35,7 @@ function App() {
           <Route path="/successentry" element={<SuccessRegister />} />
           <Route path="/successlogin" element={<SuccessLogin />} />
           <Route path="/successlogout" element={<SuccessLogout />} />
+          <Route path="/basket" element={<Basket />} />
         </Route>
       </Routes>
     </div>

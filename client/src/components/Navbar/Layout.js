@@ -6,8 +6,10 @@ import { useAuth } from "../contexts/AutContext";
 import { Logout } from "../../api";
 
 import { useNavigate } from "react-router-dom";
+import { useBasket } from "../contexts/BasketContext";
 
 function Layout() {
+  const { items } = useBasket();
   const navigate = useNavigate();
 
   const { setLoggedIn, setUser } = useAuth();
@@ -55,6 +57,14 @@ function Layout() {
           )}
           {loggedIn && (
             <>
+              {items.length > 0 && (
+                <NavLink to="/basket">
+                  <Button colorScheme="green">
+                    Basket ({items.length})
+                  </Button>
+                </NavLink>
+              )}
+
               <NavLink to="/profile">
                 <Button>Profile</Button>
               </NavLink>

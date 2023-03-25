@@ -1,10 +1,15 @@
-import { Image, Box, Button} from "@chakra-ui/react";
+import { Image, Box, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import moment from "moment"
+import moment from "moment";
+import { useBasket } from "../contexts/BasketContext";
+import { useState } from "react";
 // import styles from "../../components/Navbar/styles.module.css";
 function Card({ item }) {
-  
-    
+  const { addItemtoBasket, items } = useBasket();
+  const findItemBasket = items.find(
+    (basket_item) => basket_item._id === item._id
+  );
+
   return (
     <Box p="3" borderWidth="1px" borderRadius="lg" overflow="hidden">
       <NavLink to={`/product/${item._id}`}>
@@ -19,7 +24,12 @@ function Card({ item }) {
           <Box>{item.price}</Box>
         </Box>
       </NavLink>
-      <Button colorScheme="green">Add To Baseket</Button>
+      <Button
+        colorScheme={findItemBasket ? "red" : "green"}
+        onClick={() => addItemtoBasket(item, findItemBasket)}
+      >
+        {findItemBasket ? "Remove from Basket" : "Add to Basket"}
+      </Button>
     </Box>
   );
 }

@@ -112,19 +112,19 @@ function Signup() {
                   ""
                 )}
               </FormControl>
-              <Button mt="4" width="100%" colorScheme="green" type="submit">
-                Submit
-              </Button>{" "}
+              
               <br />
-              {circle && (
+              {circle ?
                 <Spinner
                   color="blue.200"
                   emptyColor="gray.500"
                   speed="0.5s"
-                  size="xl"
+                  size="lg"
                   thickness="4px"
-                />
-              )}
+                /> : <Button mt="4" width="100%" colorScheme="green" type="submit">
+                Submit
+              </Button> 
+              }
             </form>
           </Box>
         </Box>

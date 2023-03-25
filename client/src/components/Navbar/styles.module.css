@@ -3,7 +3,8 @@
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #e2e8f0;
-    align-items: center
+    align-items: center;
+    
 }
 
 .nav .left {
@@ -99,4 +100,27 @@
 }
 .proDesc button {
     width: 60%;
+}
+.basket {
+    display: flex;
+}
+.basket > * {
+    flex: 1;
+}
+.basketLeft {
+    flex: 3;
+}
+
+.basketRight {
+    display: flex;
+    
+    justify-content: center;
+    margin: 64px auto;
+}
+
+.basketList {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
 }
