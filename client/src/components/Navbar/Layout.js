@@ -12,7 +12,7 @@ function Layout() {
   const { items } = useBasket();
   const navigate = useNavigate();
 
-  const { setLoggedIn, setUser } = useAuth();
+  const { setLoggedIn, setUser, user } = useAuth();
 
   const { loggedIn } = useAuth();
 
@@ -55,16 +55,27 @@ function Layout() {
               </NavLink>
             </>
           )}
-          {loggedIn && (
+          {loggedIn && user?.role !== "admin" && (
             <>
               {items.length > 0 && (
                 <NavLink to="/basket">
-                  <Button colorScheme="green">
-                    Basket ({items.length})
-                  </Button>
+                  <Button colorScheme="green">Basket ({items.length})</Button>
                 </NavLink>
               )}
 
+              <NavLink to="/profile">
+                <Button>Profile</Button>
+              </NavLink>
+              <Button onClick={LogoutProfile} colorScheme="red">
+                Logout
+              </Button>
+            </>
+          )}
+          {user?.role === "admin" && (
+            <>
+              <NavLink to={"/admin"}>
+                <Button colorScheme="green">Admin</Button>
+              </NavLink>
               <NavLink to="/profile">
                 <Button>Profile</Button>
               </NavLink>

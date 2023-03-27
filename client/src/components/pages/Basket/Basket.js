@@ -17,7 +17,7 @@ import {
   Textarea,
   FormLabel,
   FormControl,
-  Input,
+  
 } from "@chakra-ui/react";
 import styles from "../../Navbar/styles.module.css";
 import { NavLink } from "react-router-dom";

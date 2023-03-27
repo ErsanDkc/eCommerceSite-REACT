@@ -12,8 +12,12 @@ import Products from "./components/pages/Products/Products";
 import Profile from "./components/pages/Profile/Profile";
 import SuccessLogin from "./components/pages/SuccessLogin";
 import SuccessLogout from "./components/pages/SuccessLogout";
-
+import ProtectedAdmin from "./components/pages/Admin/ProtectedAdmin";
 import SuccessRegister from "./components/pages/SuccessRegister";
+import AdminHome from "./components/pages/Admin/AdminHome/AdminHome";
+import Adminss from "./components/pages/Admin/Adminss";
+import AdminProducts from "./components/pages/Admin/Products/AdminProducts";
+import Orders from "./components/pages/Admin/Orders/Orders";
 
 function App() {
   // const navigate = useNavigate()
@@ -37,6 +41,13 @@ function App() {
           <Route path="/successlogin" element={<SuccessLogin />} />
           <Route path="/successlogout" element={<SuccessLogout />} />
           <Route path="/basket" element={<Basket />} />
+          <Route element={<ProtectedAdmin />}>
+            <Route path="/admin" element={<Adminss />}>
+              <Route path="/admin/home" element={<AdminHome />} />
+              <Route path="/admin/products" element={<AdminProducts />} />
+              <Route path="/admin/orders" element={<Orders />} />
+            </Route>
+          </Route>
           <Route path="/*" element={<Error404 />} />
         </Route>
       </Routes>

@@ -126,3 +126,7 @@
     flex-wrap: wrap;
     
 }
+
+.adminMenu {
+    display: flex;
+}
