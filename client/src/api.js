@@ -56,3 +56,10 @@ export const Logout = async() => {
   })
   return data;
 }
+
+
+export const  postOrder =  async(input) => {
+  const {data} = await axios.post(`${process.env.REACT_APP_ENDPOINT}/order`, input)
+
+  return data;
+}
