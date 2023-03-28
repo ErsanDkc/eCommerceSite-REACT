@@ -11,6 +11,8 @@ function ProductDetail() {
   const { addItemtoBasket, items } = useBasket();
   const { product_id } = useParams();
 
+  
+
   const { isLoading, error, data } = useQuery(["product", product_id], () =>
     product(product_id)
   );

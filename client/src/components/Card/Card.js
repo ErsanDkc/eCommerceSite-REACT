@@ -2,8 +2,6 @@ import { Image, Box, Button } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import { useBasket } from "../contexts/BasketContext";
-import { useState } from "react";
-// import styles from "../../components/Navbar/styles.module.css";
 function Card({ item }) {
   const { addItemtoBasket, items } = useBasket();
   const findItemBasket = items.find(

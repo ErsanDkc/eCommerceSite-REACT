@@ -69,3 +69,8 @@ export const adminOrders = async() => {
 
   return data;
 }
+
+export const deleteProducts = async(product_id) => {
+  const {data} = await axios.delete(`${process.env.REACT_APP_ENDPOINT}/product/${product_id}`)
+  return data;
+}
