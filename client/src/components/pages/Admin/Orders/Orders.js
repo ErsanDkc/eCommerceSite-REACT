@@ -44,7 +44,7 @@ function Orders() {
               <Td>{item.adress}</Td>
               <Td style={{display:"flex", justifyContent:"space-between"}} >
                 {item.items.length} 
-                <NavLink to="/admin/orders/detail" element={<AdminDetail />} >
+                <NavLink to={`/admin/orders/${item._id}`} element={<AdminDetail />} >
                   
                   <Button size="small" colorScheme="green" p={1}>Detay</Button>
                   </NavLink>

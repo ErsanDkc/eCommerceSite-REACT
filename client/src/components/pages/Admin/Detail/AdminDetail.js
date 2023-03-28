@@ -2,7 +2,11 @@ import React from "react";
 import { Box, Image, Text, Flex } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import { adminOrders } from "../../../../api";
+import { useParams } from "react-router-dom";
 function AdminDetail() {
+
+  const {product_id} = useParams()
+  console.log(product_id)
   const { isLoading, data, isError, error } = useQuery(
     "admin:details",
     adminOrders
@@ -18,7 +22,7 @@ function AdminDetail() {
 
   return (
     <Flex m={6} wrap="wrap" >
-     {
+     {/* {
       data.map((item,i) => (
         <React.Fragment key={i}>
           {
@@ -31,7 +35,7 @@ function AdminDetail() {
           }
         </React.Fragment>
       ))
-     }
+     } */}
     </Flex>
   );
 }

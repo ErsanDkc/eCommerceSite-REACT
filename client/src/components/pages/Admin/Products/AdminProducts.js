@@ -4,6 +4,9 @@ import { Text } from "@chakra-ui/react";
 import { deleteProducts, productList } from "../../../../api";
 import { Table, Popconfirm } from "antd";
 import { NavLink } from "react-router-dom";
+
+
+
 function AdminProducts() {
   const { isLoading, isError, data, error } = useQuery(
     "admin:products",
