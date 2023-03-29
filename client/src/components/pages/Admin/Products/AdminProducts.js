@@ -1,11 +1,9 @@
 import React, { useMemo } from "react";
-import { useQuery,useMutation, useQueryClient } from "react-query";
-import { Text } from "@chakra-ui/react";
+import { useQuery, useMutation, useQueryClient } from "react-query";
+import { Button, Flex, Text } from "@chakra-ui/react";
 import { deleteProducts, productList } from "../../../../api";
 import { Table, Popconfirm } from "antd";
 import { NavLink } from "react-router-dom";
-
-
 
 function AdminProducts() {
   const { isLoading, isError, data, error } = useQuery(
@@ -13,11 +11,11 @@ function AdminProducts() {
     productList
   );
 
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   const deleteMutation = useMutation(deleteProducts, {
-    onSuccess : () =>  queryClient.invalidateQueries("admin:products")
-  })
+    onSuccess: () => queryClient.invalidateQueries("admin:products"),
+  });
 
   const columns = useMemo(() => {
     return [
@@ -47,9 +45,9 @@ function AdminProducts() {
               onConfirm={() => {
                 deleteMutation.mutate(record._id, {
                   onSuccess: () => {
-                    console.log("success")
-                  }
-                })
+                    console.log("success");
+                  },
+                });
               }}
               onCancel={() => {
                 console.log("iptal edildi");
@@ -58,7 +56,7 @@ function AdminProducts() {
               cancelText="No"
               placement="left"
             >
-              <a href="#/" style={{marginLeft:10}}>
+              <a href="#/" style={{ marginLeft: 10 }}>
                 Delete
               </a>
             </Popconfirm>
@@ -66,7 +64,7 @@ function AdminProducts() {
         ),
       },
     ];
-  }, [])
+  }, [deleteMutation]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -76,13 +74,16 @@ function AdminProducts() {
     return <div>Error. {error.message}</div>;
   }
 
-  
-
   return (
     <div>
-      <Text fontSize="22" p={8}>
-        Products
-      </Text>
+      <Flex alignItems="center" justifyContent="space-between">
+        <Text fontSize="22" p={8}>
+          Products
+        </Text>
+        <NavLink to="/admin/products/new">
+          <Button colorScheme="green" mr="10">Add New Product</Button>
+        </NavLink>
+      </Flex>
       <Table dataSource={data} columns={columns} rowKey="_id" />;
     </div>
   );

@@ -9,9 +9,11 @@ function Card({ item }) {
   );
 
   return (
-    <Box p="3" borderWidth="1px" borderRadius="lg" overflow="hidden">
+    <>
+    
+    <Box p="6" borderWidth="1px" borderRadius="lg" overflow="hidden" mt="8" >
       <NavLink to={`/product/${item._id}`}>
-        <Image src={item.photos[0]} alt="asd" loading="lazy" />
+        <Image src={item.photos[0]} alt="asd" loading="lazy" width="100%"  height="350px" objectFit="cover" borderRadius="16px" />
         <Box p="6">
           <Box display="flex" alignItems="baseline">
             {moment(item.createAt).format("DD/MM/YYYY")}
@@ -29,6 +31,7 @@ function Card({ item }) {
         {findItemBasket ? "Remove from Basket" : "Add to Basket"}
       </Button>
     </Box>
+    </>
   );
 }
 

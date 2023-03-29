@@ -20,6 +20,7 @@ import AdminProducts from "./components/pages/Admin/Products/AdminProducts";
 import Orders from "./components/pages/Admin/Orders/Orders";
 import AdminDetail from "./components/pages/Admin/Detail/AdminDetail";
 import AdminproDetail from "./components/pages/Admin/AdminproDetail/AdminproDetail";
+import NewProduct from "./components/pages/Admin/Products/NewProduct";
 
 function App() {
   // const navigate = useNavigate()
@@ -50,6 +51,7 @@ function App() {
               <Route path="/admin/orders" element={<Orders />} />
               <Route path="/admin/orders/:product_id" element={<AdminDetail />} />
               <Route path="/admin/products/:product_id" element={<AdminproDetail />} />
+              <Route path="/admin/products/new" element={<NewProduct />} />
             </Route>
           </Route>
           <Route path="/*" element={<Error404 />} />

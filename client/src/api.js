@@ -32,6 +32,12 @@ export const product = async (product_id) => {
   return data;
 };
 
+export const newProduct = async(input) => {
+  const {data} = await axios.post(`${process.env.REACT_APP_ENDPOINT}/product/`, input)
+
+  return data;
+}
+
 export const signupDataPost = async (input) => {
   const { data } = await axios.post(
     `${process.env.REACT_APP_ENDPOINT}/auth/register`,
@@ -72,5 +78,13 @@ export const adminOrders = async() => {
 
 export const deleteProducts = async(product_id) => {
   const {data} = await axios.delete(`${process.env.REACT_APP_ENDPOINT}/product/${product_id}`)
+  return data;
+}
+
+
+export const updateProduct = async(input,product_id) => {
+  const {data} = await axios.put(`${process.env.REACT_APP_ENDPOINT}/product/${product_id}`,input)
+
+
   return data;
 }

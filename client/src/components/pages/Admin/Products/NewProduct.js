@@ -1,10 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
-import { product, updateProduct } from "../../../../api";
-import styles from "../../../Navbar/styles.module.css"
+import { useQueryClient, useMutation } from "react-query";
+import { newProduct } from "../../../../api";
+import styles from "../../../Navbar/styles.module.css";
 import { FieldArray, Formik } from "formik";
-import { message } from 'antd';
+import { message } from "antd";
 import {
   FormControl,
   FormLabel,
@@ -13,59 +12,63 @@ import {
   Textarea,
   Button,
   Text,
+  Flex,
 } from "@chakra-ui/react";
 import validations from "./validation";
 
-function AdminproDetail() {
-    
+function NewProduct() {
+  const queryClient = useQueryClient();
 
+  const newProductMutation = useMutation(newProduct, {
+    onSuccess: () => queryClient.invalidateQueries("admin:products"),
+  });
 
-  const { product_id } = useParams();
+  const handleSubmit = async (values, action) => {
+    const newValues = {
+      ...values,
+      photos: JSON.stringify(values.photos),
+    };
 
-  const { isError, isLoading, data, error } = useQuery(
-    ["admin:productDetail", product_id],
-    () => product(product_id)
-  );
- 
+    message.loading({ content: "Loading...", key: "product_added" });
 
-  if (isLoading) {
-    return <div>Loading..</div>;
-  }
+    newProductMutation.mutate(newValues, {
+      onSuccess: () => {
+        console.log("success");
+      },
+    });
 
-  if (isError) {
-    return <div>Error. {error.message}</div>;
-  }
-  console.log(data);
-  const handleSubmit = async(values,action) => {
-    console.log("submitted");
-    message.loading({content: "Loading...", key:"product_update"})
-    try{
-        await updateProduct(values,product_id);
-        message.success({
-            content: "Item has been uptated  successfully!",
-            key: "product_update",
-            duration:  4
-        })
-    }catch(e) {
-        message.error("The item does not updated")
-    }
+    message.success({
+      content: "item  has added successfully!",
+      key: "product_added",
+    });
+
+    try {
+    } catch (e) {}
   };
   return (
     <div>
       <Text fontSize="2xl" p={5}>
-        Edit
+        New Product
       </Text>
       <Formik
         initialValues={{
-          title: data.title,
-          description: data.description,
-          price: data.price,
-          photos: data.photos,
+          title: "",
+          description: "",
+          price: "",
+          photos: [],
         }}
-          validationSchema={validations}
+        validationSchema={validations}
         onSubmit={handleSubmit}
       >
-        {({ handleBlur, handleChange,errors,touched, handleSubmit, isSubmitting, values }) => (
+        {({
+          handleBlur,
+          handleChange,
+          errors,
+          touched,
+          handleSubmit,
+          isSubmitting,
+          values,
+        }) => (
           <>
             <form onSubmit={handleSubmit}>
               <Box p={8}>
@@ -80,10 +83,10 @@ function AdminproDetail() {
                     isInvalid={errors.title && touched.title}
                   />
                   {errors.title && touched.title ? (
-                  <div className={styles.error}>{errors.title}</div>
-                ) : (
-                  ""
-                )}
+                    <div className={styles.error}>{errors.title}</div>
+                  ) : (
+                    ""
+                  )}
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Price</FormLabel>
@@ -96,10 +99,10 @@ function AdminproDetail() {
                     isInvalid={errors.price && touched.price}
                   />
                   {errors.price && touched.price ? (
-                  <div className={styles.error}>{errors.price}</div>
-                ) : (
-                  ""
-                )}
+                    <div className={styles.error}>{errors.price}</div>
+                  ) : (
+                    ""
+                  )}
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Description</FormLabel>
@@ -112,10 +115,10 @@ function AdminproDetail() {
                     isInvalid={errors.description && touched.description}
                   />
                   {errors.description && touched.description ? (
-                  <div className={styles.error}>{errors.description}</div>
-                ) : (
-                  ""
-                )}
+                    <div className={styles.error}>{errors.description}</div>
+                  ) : (
+                    ""
+                  )}
                 </FormControl>
                 <FormControl mt={4}>
                   <FormLabel>Photos</FormLabel>
@@ -144,13 +147,33 @@ function AdminproDetail() {
                               </Button>
                             </div>
                           ))}
-                          <Button mt={8}colorScheme="gray" onClick={() => arrayHelpers.push("")}>Add a Photo</Button>
+                        <Flex justifyContent="center">
+                          <Button
+                            mt={8}
+                            colorScheme="gray"
+                            onClick={() => arrayHelpers.push("")}
+                          >
+                            Add a Photo
+                          </Button>
+                        </Flex>
                       </div>
                     )}
                   />
                 </FormControl>
               </Box>
-              <Button  mt={4} width="full" onClick={handleSubmit} type="submit" isLoading={isSubmitting }>Update</Button>
+              <Flex justifyContent="center">
+                <Button
+                  mt={4}
+                  width="50%"
+                  onClick={handleSubmit}
+                  type="submit"
+                  isLoading={isSubmitting}
+                  colorScheme="green"
+                  alignItems="center"
+                >
+                  Save
+                </Button>
+              </Flex>
             </form>
           </>
         )}
@@ -159,4 +182,4 @@ function AdminproDetail() {
   );
 }
 
-export default AdminproDetail;
+export default NewProduct;

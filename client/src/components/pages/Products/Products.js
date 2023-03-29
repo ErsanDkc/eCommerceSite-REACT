@@ -1,4 +1,4 @@
-import { Box, Grid, Flex, Button } from "@chakra-ui/react";
+import { Box, Grid, Flex, Button,Text } from "@chakra-ui/react";
 import React from "react";
 import Card from "../../Card/Card";
 import { useInfiniteQuery } from "react-query";
@@ -27,9 +27,10 @@ function Products() {
   if (status === "loading") return "Loading...";
 
   if (status === "error") return "An error has occurred: " + error.message;
-  console.log(data);
+  
   return (
     <div>
+      <Text fontSize="32" fontStyle="italic" textAlign="center" mt="2" textDecoration="underline" >Products</Text>
       <Grid templateColumns="repeat(3, 1fr)" gap={4}>
         {/* {
           data.map((item,key) => 
