@@ -39,7 +39,7 @@ function Signin() {
 
           setTimeout(() => {
             navigate("/homepage");
-          }, 8000);
+          }, 6000);
           setTimeout(() => {
             actions.resetForm();
             login(loginResponse);

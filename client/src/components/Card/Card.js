@@ -21,7 +21,7 @@ function Card({ item }) {
           <Box marginTop="2" fontWeight="semibold" lineHeight="tight" as="h4">
             {item.title}
           </Box>
-          <Box>{item.price}</Box>
+          <Box>{item.price} ₺</Box>
         </Box>
       </NavLink>
       <Button

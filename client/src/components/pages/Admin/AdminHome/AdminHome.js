@@ -3,7 +3,7 @@ import React from 'react'
 function AdminHome() {
   return (
     <div>
-        La bura admin Home
+        Admin Home
     </div>
   )
 }
