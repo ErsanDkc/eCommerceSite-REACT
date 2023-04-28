@@ -1,4 +1,5 @@
 # E-Commerce Site:
+![ecommercess](https://user-images.githubusercontent.com/120705243/231282596-93de87a7-737f-4345-b360-131e7ee35077.gif)
 ## React E-Commerce App Features
 -Grid and Slide view of products <br/>  
 -Dynamic product detail view specific to GridView and SlideView <br/>
